@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from backend.api.models import Password
+from .models import Password
 
 
 class UserSerializer(serializers.ModelSerializer):
