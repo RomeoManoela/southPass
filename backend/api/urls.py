@@ -22,4 +22,5 @@ urlpatterns = [
     path(
         "token-refresh/", views.CustomTokenRefreshView.as_view(), name="token_refresh"
     ),
+    path("get-user/", views.get_user, name="get-user"),
 ]

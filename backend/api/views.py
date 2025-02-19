@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import generics
+from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from .models import Password
@@ -68,3 +70,10 @@ class CustomTokenRefreshView(TokenRefreshView):
         request._full_data = {"refresh": refresh}
         res = super().post(request, *args, **kwargs)
         return res
+
+
+@api_view(["GET"])
+def get_user(request):
+    if request.user.is_authenticated:
+        serializer = UserSerializer(request.user, context={"request": request})
+        return Response({"user": serializer.data})

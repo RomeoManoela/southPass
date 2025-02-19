@@ -54,4 +54,9 @@ export const registerUser = async (data: formDataProps) => {
   }
 };
 
+export const getUser = async () => {
+  const res = await api.get('get-user/');
+  return res.data;
+};
+
 export default api;

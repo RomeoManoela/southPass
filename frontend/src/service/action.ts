@@ -17,7 +17,6 @@ export const loginAction = async ({ request }) => {
       status['error'] = 'Verify your login credentials.';
       return status;
     }
-    console.log(res.access);
     localStorage.setItem('token', res.access);
     return redirect('/dashboard');
   } else {

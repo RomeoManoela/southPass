@@ -21,6 +21,17 @@ export interface formDataProps {
   actionType?: string;
 }
 
-export interface errorTypes {
-  message?: string;
+export interface userState {
+  username: string;
+  id: null | number;
+  passwords: passwordItem[];
+}
+
+export interface passwordItem {
+  id: number;
+  title: string;
+  description: string;
+  created_at: string;
+  deleted: boolean;
+  password: string;
 }
