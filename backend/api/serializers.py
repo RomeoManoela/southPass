@@ -14,8 +14,8 @@ class UserSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data)
 
 
-class PasswordSerializer(serializers.Serializer):
+class PasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Password
         fields = "__all__"
-        extra_kwargs = {"user": {"write_only": True}}
+        extra_kwargs = {"user": {"read_only": True}}

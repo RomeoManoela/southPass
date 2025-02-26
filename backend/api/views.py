@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -7,6 +8,19 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from .models import Password
 from .serializers import UserSerializer, PasswordSerializer
+
+
+def get_fff(request):
+    res = JsonResponse({"romeo": "111"})
+    res.set_cookie(
+        key="fff",
+        value="romeo okk",
+        max_age=3600,
+        httponly=True,
+        secure=False,
+        samesite="Strict",
+    )
+    return res
 
 
 class PasswordListCreateAPI(generics.ListCreateAPIView):
@@ -54,8 +68,8 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             key="refresh",
             value=refresh_token,
             httponly=True,
-            secure=False,
-            samesite="Lax",
+            secure=True,
+            samesite="None",
             max_age=24 * 3600,
         )
         res.data.pop("refresh")

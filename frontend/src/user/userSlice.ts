@@ -15,10 +15,12 @@ const userSlice = createSlice({
       state.id = action.payload.id;
       state.username = action.payload.username;
     },
-
-    deletePassword: (state, action) => {
+    setCurrentPasswords: (state, action) => {
+      state.passwords = action.payload;
+    },
+    deleteAPassword: (state, action) => {
       state.passwords = state.passwords.filter(
-        (password) => password.id !== action.payload.id,
+        (password) => password.id != action.payload,
       );
     },
     addPassword: (state, action) => {
@@ -34,7 +36,14 @@ const userSlice = createSlice({
   },
 });
 
-export const { deletePassword, updatePassword, addPassword, setCurrentUser } =
-  userSlice.actions;
+export const {
+  deleteAPassword,
+  updatePassword,
+  addPassword,
+  setCurrentUser,
+  setCurrentPasswords,
+} = userSlice.actions;
 
 export default userSlice.reducer;
+
+export const getCurrentPasswords = (state: { user: userState }) => state.user.passwords;

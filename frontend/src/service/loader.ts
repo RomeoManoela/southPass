@@ -7,6 +7,7 @@ export const dashboardLoader = async () => {
   const exp: number = jwtDecode(token).exp as number;
   const now: number = Date.now() / 1000;
   if (exp < now) {
+    console.log('Expired token');
     const res = await refreshToken();
     localStorage.setItem('token', res);
   }
