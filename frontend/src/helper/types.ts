@@ -28,10 +28,10 @@ export interface userState {
 }
 
 export interface passwordItem {
-  id: number;
+  id?: number;
   title: string;
-  description: string;
-  created_at: string;
-  deleted: boolean;
   password: string;
+  description: string;
+  created_at?: string;
+  deleted?: boolean;
 }

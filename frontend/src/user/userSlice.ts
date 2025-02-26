@@ -13,7 +13,7 @@ const userSlice = createSlice({
   reducers: {
     setCurrentUser: (state, action) => {
       state.id = action.payload.id;
-      state.username = action.payload.username;
+      state.username = action.payload.usernae;
     },
     setCurrentPasswords: (state, action) => {
       state.passwords = action.payload;

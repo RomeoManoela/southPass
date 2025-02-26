@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { formDataProps } from '../helper/types.ts';
+import { formDataProps, passwordItem } from '../helper/types.ts';
 
 const api: AxiosInstance = axios.create({
   baseURL: 'http://localhost:8001/api',
@@ -73,6 +73,16 @@ export const getPasswords = async () => {
 export const deletePassword = async (id: number) => {
   try {
     const res = await api.delete(`password/${id}/`);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
+export const createPassword = async (data: passwordItem) => {
+  try {
+    const res = await api.post('passwords/', data);
     return res.data;
   } catch (e) {
     console.log(e);

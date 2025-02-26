@@ -3,13 +3,13 @@ import { JSX } from 'react';
 import { Button } from '../ui/Button.tsx';
 import { deletePassword } from '../service/apis.ts';
 import { useDispatch } from 'react-redux';
-import { deleteAPassword } from './userSlice.ts';
+import { deleteAPassword } from '../user/userSlice.ts';
 
 function Password({ password }: { password: passwordItem }): JSX.Element | null {
   const dispatch = useDispatch();
   async function handleDelete() {
     dispatch(deleteAPassword(password.id));
-    await deletePassword(password.id);
+    await deletePassword(password.id as number);
   }
 
   if (password.deleted) {
